@@ -9,23 +9,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Store {
-
     private static final Store INST = new Store();
-
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
-
-    private Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
-
-    private static AtomicInteger POST_ID = new AtomicInteger(4);
-    private static AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
+    private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
+    private final AtomicInteger POST_ID = new AtomicInteger();
+    private final AtomicInteger CANDIDATE_ID = new AtomicInteger();
 
     private Store() {
-        posts.put(1, new Post(1, "Junior Java Job"));
-        posts.put(2, new Post(2, "Middle Java Job"));
-        posts.put(3, new Post(3, "Senior Java Job"));
-        candidates.put(1, new Candidate(1, "Junior Java"));
-        candidates.put(2, new Candidate(2, "Middle Java"));
-        candidates.put(3, new Candidate(3, "Senior Java"));
+        savePost(new Post("Junior Java Job"));
+        savePost(new Post("Middle Java Job"));
+        savePost(new Post("Senior Java Job"));
+        saveCandidate(new Candidate("Junior Java"));
+        saveCandidate(new Candidate( "Middle Java"));
+        saveCandidate(new Candidate("Senior Java"));
     }
 
     public static Store instOf() {
@@ -60,5 +56,9 @@ public class Store {
 
     public Candidate findCandidateById(int id) {
         return candidates.get(id);
+    }
+
+    public void deleteCandidateById(int id) {
+        candidates.remove(id);
     }
 }

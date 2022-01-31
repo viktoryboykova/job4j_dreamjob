@@ -10,6 +10,10 @@ public class Post {
     private String description;
     private Date created;
 
+    public Post(String name) {
+        this.name = name;
+    }
+
     public Post(int id, String name) {
         this.id = id;
         this.name = name;

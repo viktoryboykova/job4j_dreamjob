@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
@@ -16,6 +19,18 @@
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>ru.job4j.dream.servlet.IndexServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteCandidateServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.DeleteCandidateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
     <url-pattern>/posts.do</url-pattern>
@@ -28,5 +43,16 @@
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteCandidateServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

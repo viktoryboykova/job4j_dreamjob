@@ -6,6 +6,10 @@ public class Candidate {
     private int id;
     private String name;
 
+    public Candidate(String name) {
+        this.name = name;
+    }
+
     public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
@@ -32,8 +36,7 @@ public class Candidate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Candidate candidate = (Candidate) o;
-        return id == candidate.id &&
-                Objects.equals(name, candidate.name);
+        return id == candidate.id && Objects.equals(name, candidate.name);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CandidateServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         Store.instOf().saveCandidate(
                 new Candidate(
-                        Integer.valueOf(req.getParameter("id")),
+                        Integer.parseInt(req.getParameter("id")),
                         req.getParameter("name")
                 )
         );

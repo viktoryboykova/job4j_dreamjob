@@ -43,6 +43,9 @@
                     <thead>
                     <tr>
                         <th scope="col">Названия</th>
+                        <th scope="col">Фото</th>
+                        <th scope="col">Добавить фото</th>
+                        <th scope="col">Удалить кандидата</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,6 +56,15 @@
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <c:out value="${can.name}"/>
+                            </td>
+                            <td>
+                                <img src="<c:url value='/download?id=${can.id}'/>" width="100px" height="100px"/>
+                            </td>
+                            <td>
+                                <a href="<c:url value='/upload?id=${can.id}, name=${can.name}'/>">Добавить</a>
+                            </td>
+                            <td>
+                                <a href="<c:url value='/delete?id=${can.id}'/>">Удалить</a>
                             </td>
                         </tr>
                     </c:forEach>
