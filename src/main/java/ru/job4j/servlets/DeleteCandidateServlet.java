@@ -1,5 +1,6 @@
 package ru.job4j.servlets;
 
+import ru.job4j.dream.store.DbStore;
 import ru.job4j.dream.store.MemStore;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ public class DeleteCandidateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        MemStore.instOf().deleteCandidateById(Integer.parseInt(id));
+        DbStore.instOf().deleteCandidateById(Integer.parseInt(id));
         File repository = new File("c:\\images\\");
         if (repository.isDirectory()) {
             for (File file : repository.listFiles()) {

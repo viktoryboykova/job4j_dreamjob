@@ -12,5 +12,6 @@ public class MainStore {
         }
         store.saveCandidate(new Candidate(1, "Senior Egor"));
         System.out.println(store.findCandidateById(1).getName());
+        store.deleteCandidateById(2);
     }
 }

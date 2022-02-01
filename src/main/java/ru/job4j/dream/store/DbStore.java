@@ -192,4 +192,16 @@ public class DbStore implements Store {
         }
         return null;
     }
+
+    @Override
+    public void deleteCandidateById(int id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement statement =
+                     cn.prepareStatement("DELETE FROM candidate WHERE id = ?")) {
+            statement.setInt(1, id);
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
