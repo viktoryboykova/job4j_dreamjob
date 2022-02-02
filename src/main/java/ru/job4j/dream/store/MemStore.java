@@ -2,6 +2,7 @@ package ru.job4j.dream.store;
 
 import ru.job4j.dream.model.Candidate;
 import ru.job4j.dream.model.Post;
+import ru.job4j.dream.model.User;
 
 import java.util.Collection;
 import java.util.Map;
@@ -12,6 +13,7 @@ public class MemStore implements Store {
     private static final MemStore INST = new MemStore();
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
+    private final Map<Integer, User> users = new ConcurrentHashMap<>();
     private final AtomicInteger postId = new AtomicInteger();
     private final AtomicInteger candidateId = new AtomicInteger();
 
@@ -36,6 +38,10 @@ public class MemStore implements Store {
         return candidates.values();
     }
 
+    public Collection<User> findAllUsers() {
+        return users.values();
+    }
+
     public void savePost(Post post) {
         if (post.getId() == 0) {
             post.setId(postId.incrementAndGet());
@@ -50,12 +56,27 @@ public class MemStore implements Store {
         candidates.put(candidate.getId(), candidate);
     }
 
+    public void saveUser(User user) {
+        if (user.getId() == 0) {
+            user.setId(candidateId.incrementAndGet());
+        }
+        users.put(user.getId(), user);
+    }
+
     public Post findPostById(int id) {
         return posts.get(id);
     }
 
     public Candidate findCandidateById(int id) {
         return candidates.get(id);
+    }
+
+    public User findUserById(int id) {
+        return users.get(id);
+    }
+
+    public User findUserByEmail(String email) {
+        return users.values().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
     }
 
     public void deleteCandidateById(int id) {
