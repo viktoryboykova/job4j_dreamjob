@@ -89,15 +89,16 @@ public class DbStore implements Store {
     public Collection<User> findAllUsers() {
         List<User> users = new ArrayList<>();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM user")
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users")
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    User user = new User();
+                    User user = new User(
+                            it.getString("name"),
+                            it.getString("email"),
+                            it.getString("password")
+                    );
                     user.setId(it.getInt("id"));
-                    user.setName(it.getString("name"));
-                    user.setEmail(it.getString("email"));
-                    user.setPassword(it.getString("password"));
                     users.add(user);
                 }
             }
@@ -123,18 +124,10 @@ public class DbStore implements Store {
         }
     }
 
-    public void saveUser(User user) {
-        if (user.getId() == 0) {
-            createUser(user);
-        } else {
-            updateUser(user);
-        }
-    }
-
-    private void updateUser(User user) {
+    public void updateUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement statement =
-                     cn.prepareStatement("UPDATE user SET name = ?, email = ?, password = ? WHERE id = ?")) {
+                     cn.prepareStatement("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?")) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
@@ -145,9 +138,9 @@ public class DbStore implements Store {
         }
     }
 
-    private User createUser(User user) {
+    public User createUser(User user) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("INSERT INTO user(name, email, password) VALUES (?,?,?)",
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO users(name, email, password) VALUES (?,?,?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, user.getName());
@@ -259,42 +252,44 @@ public class DbStore implements Store {
 
     public User findUserById(int id) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM user WHERE id = ?")
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE id = ?")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    User user = new User();
+                    User user = new User(
+                            it.getString("name"),
+                            it.getString("email"),
+                            it.getString("password")
+                    );
                     user.setId(it.getInt("id"));
-                    user.setName(it.getString("name"));
-                    user.setEmail(it.getString("email"));
-                    user.setPassword(it.getString("password"));
                     return user;
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new NullPointerException("Пользователь не найден в базе данных");
         }
         return null;
     }
 
     public User findUserByEmail(String email) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM user WHERE email = ?")
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE email = ?")
         ) {
             ps.setString(1, email);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    User user = new User();
+                    User user = new User(
+                            it.getString("name"),
+                            it.getString("email"),
+                            it.getString("password")
+                    );
                     user.setId(it.getInt("id"));
-                    user.setName(it.getString("name"));
-                    user.setEmail(it.getString("email"));
-                    user.setPassword(it.getString("password"));
                     return user;
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new NullPointerException("Пользователь не найден в базе данных");
         }
         return null;
     }

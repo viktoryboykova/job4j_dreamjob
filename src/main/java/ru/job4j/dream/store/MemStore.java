@@ -56,11 +56,10 @@ public class MemStore implements Store {
         candidates.put(candidate.getId(), candidate);
     }
 
-    public void saveUser(User user) {
-        if (user.getId() == 0) {
-            user.setId(candidateId.incrementAndGet());
-        }
+    @Override
+    public User createUser(User user) {
         users.put(user.getId(), user);
+        return user;
     }
 
     public Post findPostById(int id) {

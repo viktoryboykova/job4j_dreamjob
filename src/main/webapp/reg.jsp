@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: gurov
-  Date: 01.02.2022
-  Time: 18:24
+  Date: 02.02.2022
+  Time: 14:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -33,27 +33,29 @@
             <table class="table">
                 <tr class="card-header">
                     <td>
-                        <h5>Авторизация</h5>
-                    </td>
-                    <td>
-                        <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>
-                    </td>
-                    <td>
-                        <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Главное меню</a>
+                        <h5>Регистрация</h5>
                     </td>
                 </tr>
             </table>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/auth.do" method="post">
+                <form action="<%=request.getContextPath()%>/reg.do" method="post">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
                     <div class="form-group">
                         <label>Почта</label>
                         <input type="text" class="form-control" name="email">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password1">
                     </div>
-                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <div class="form-group">
+                        <label>Введите пароль еще раз</label>
+                        <input type="text" class="form-control" name="password2">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                     <c:if test="${not empty error}">
                         <div style="color:red; font-weight: bold; margin: 30px 0;">
                             <c:out value="${error}"/>

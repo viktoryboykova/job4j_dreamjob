@@ -1,7 +1,6 @@
 package ru.job4j.servlets;
 
 import ru.job4j.dream.store.DbStore;
-import ru.job4j.dream.store.MemStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
