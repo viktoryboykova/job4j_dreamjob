@@ -66,8 +66,28 @@ public class MemStore implements Store {
         return posts.get(id);
     }
 
+    @Override
+    public Post findPostByName(String name) {
+        for (Post post : posts.values()) {
+            if (post.getName().equals(name)) {
+                return post;
+            }
+        }
+        return null;
+    }
+
     public Candidate findCandidateById(int id) {
         return candidates.get(id);
+    }
+
+    @Override
+    public Candidate findCandidateByName(String name) {
+        for (Candidate candidate : candidates.values()) {
+            if (candidate.getName().equals(name)) {
+                return candidate;
+            }
+        }
+        return null;
     }
 
     public User findUserById(int id) {

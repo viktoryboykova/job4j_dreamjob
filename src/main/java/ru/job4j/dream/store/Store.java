@@ -21,7 +21,11 @@ public interface Store {
 
     Post findPostById(int id);
 
+    Post findPostByName(String name);
+
     Candidate findCandidateById(int id);
+
+    Candidate findCandidateByName(String name);
 
     User findUserById(int id);
 
