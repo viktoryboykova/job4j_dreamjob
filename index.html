@@ -7,61 +7,79 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            if ($('#name').val() === '') {
+                alert('Заполните поле "Имя"');
+                return false;
+            }
+            if ($('#lastName').val() === '') {
+                alert('Заполните поле "Фамилия"');
+                return false;
+            }
+            if ($('#description').val() === '') {
+                alert('Заполните поле "Описание"');
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
+
 <form>
     <div class="container px-4">
-    <div class="form-group">
-        <label for="exampleInputName">Имя</label>
-        <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Фамилия</label>
+            <input type="text" class="form-control" id="lastName">
+        </div>
+        <div class="form-group">
+            <label for="gender">Пол</label>
+            <select class="form-control" id="gender">
+                <option>мужской</option>
+                <option>женский</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default" onclick="return validate();">Добавить</button>
     </div>
-    <div class="form-group">
-        <label for="exampleInputLastName">Фамилия</label>
-        <input type="text" class="form-control" id="exampleInputLastName">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormGender">Пол</label>
-        <select class="form-control" id="exampleFormGender">
-            <option>мужской</option>
-            <option>женский</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Описание</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
-<table class="table table-bordered">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Фамилия</th>
-        <th scope="col">Пол</th>
-        <th scope="col">Описание</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Егор</td>
-        <td>Васильев</td>
-        <td>мужской</td>
-        <td>Senior</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Виктория</td>
-        <td>Бойкова</td>
-        <td>женский</td>
-        <td>Junior</td>
-    </tr>
-    </tbody>
-</table>
-<div class="container-fluid">
-    <h1>My First Bootstrap Page</h1>
-    <p>This is some text.</p>
+
+<div class="container px-4">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Пол</th>
+            <th scope="col">Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Егор</td>
+            <td>Васильев</td>
+            <td>мужской</td>
+            <td>Senior</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Виктория</td>
+            <td>Бойкова</td>
+            <td>женский</td>
+            <td>Junior</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
 </body>
 </html>
