@@ -16,16 +16,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CandidateServletTest {
-//    @Test
-//    public void whenCreateCandidate() throws IOException, ServletException {
-//        Store store = DbStore.instOf();
-//        HttpServletRequest req = mock(HttpServletRequest.class);
-//        HttpServletResponse resp = mock(HttpServletResponse.class);
-//        when(req.getParameter("id")).thenReturn("0");
-//        when(req.getParameter("name")).thenReturn("new candidate");
-//        when(req.getParameter("cityId")).thenReturn("Москва");
-//        new CandidateServlet().doPost(req, resp);
-//        Candidate candidate = store.findCandidateByName("new candidate");
-//        assertThat(candidate, notNullValue());
-//    }
+    @Test
+    public void whenCreateCandidate() throws IOException, ServletException {
+        Store store = DbStore.instOf();
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        HttpServletResponse resp = mock(HttpServletResponse.class);
+        when(req.getParameter("id")).thenReturn("0");
+        when(req.getParameter("name")).thenReturn("new candidate");
+        when(req.getParameter("cityId")).thenReturn("1");
+        new CandidateServlet().doPost(req, resp);
+        Candidate candidate = store.findCandidateByName("new candidate");
+        assertThat(candidate, notNullValue());
+    }
 }
