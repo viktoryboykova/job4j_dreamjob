@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password" id="password">
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <button type="submit" class="btn btn-primary" onclick="return validate()">Войти</button>
                     <c:if test="${not empty error}">

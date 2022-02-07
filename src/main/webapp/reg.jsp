@@ -72,11 +72,11 @@
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password1" id="password1">
+                        <input type="password" class="form-control" name="password1" id="password1">
                     </div>
                     <div class="form-group">
                         <label>Введите пароль еще раз</label>
-                        <input type="text" class="form-control" name="password2" id="password2">
+                        <input type="password" class="form-control" name="password2" id="password2">
                     </div>
                     <button type="submit" class="btn btn-primary" onclick="return validate()">Зарегистрироваться</button>
                     <c:if test="${not empty error}">
