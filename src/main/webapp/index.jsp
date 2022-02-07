@@ -57,6 +57,33 @@
                 Сегодняшние вакансии.
             </div>
             <div class="card-body">
+                <c:choose>
+                    <c:when test="${postsSize == 0}">
+                        Новых вакансий за сегодня нет
+                    </c:when>
+                    <c:when test="${postsSize != 0}">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Названия</th>
+                                <th scope="col">Дата создания</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${posts}" var="post">
+                                <tr>
+                                    <td>
+                                        <c:out value="${post.name}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${post.created}"/>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </div>
@@ -66,6 +93,38 @@
                 Сегодняшние кандидаты.
             </div>
             <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Город</th>
+                                <th scope="col">Фото</th>
+                                <th scope="col">Удалить кандидата</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${candidates}" var="can">
+                                <tr>
+                                    <td>
+                                        <c:out value="${can.name}"/>
+                                    </td>
+                                    <td>
+                                        <c:forEach items="${cities}" var="city">
+                                            <c:if test="${can.cityId == city.id}">
+                                                <c:out value="${city.city}"/>
+                                            </c:if>
+                                        </c:forEach>
+                                    </td>
+                                    <td>
+                                        <img src="<c:url value='/download?id=${can.id}'/>" width="100px" height="100px"/>
+                                    </td>
+                                    <td>
+                                        <a href="<c:url value='/delete?id=${can.id}'/>">Удалить кандидата</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
             </div>
         </div>
     </div>

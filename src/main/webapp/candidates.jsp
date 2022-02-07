@@ -1,4 +1,6 @@
-<%--
+<%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.store.DbStore" %>
+<%@ page import="ru.job4j.dream.model.City" %><%--
   Created by IntelliJ IDEA.
   User: gurov
   Date: 28.01.2022
@@ -33,13 +35,10 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/index.do">Главное меню</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate.do">Кандидаты</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
@@ -64,7 +63,8 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Названия</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Город</th>
                         <th scope="col">Фото</th>
                         <th scope="col">Добавить фото</th>
                         <th scope="col">Удалить кандидата</th>
@@ -80,13 +80,20 @@
                                 <c:out value="${can.name}"/>
                             </td>
                             <td>
+                                <c:forEach items="${cities}" var="city">
+                                    <c:if test="${can.cityId == city.id}">
+                                        <c:out value="${city.city}"/>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>
                                 <img src="<c:url value='/download?id=${can.id}'/>" width="100px" height="100px"/>
                             </td>
                             <td>
-                                <a href="<c:url value='/upload?id=${can.id}, name=${can.name}'/>">Добавить</a>
+                                <a href="<c:url value='/upload?id=${can.id}'/>">Добавить фото</a>
                             </td>
                             <td>
-                                <a href="<c:url value='/delete?id=${can.id}'/>">Удалить</a>
+                                <a href="<c:url value='/delete?id=${can.id}'/>">Удалить кандидата</a>
                             </td>
                         </tr>
                     </c:forEach>
